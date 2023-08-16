@@ -47,10 +47,10 @@ function Board({ title, id, items, className, baseColor, titleColor, actionBtnCo
                 </p>
             </div>
 
-            <div className="space-y-1.5">
+            <div className="space-y-2">
                 {
                     items?.map(item => (
-                        <TaskItem isComplete={item.isComplete} content={item.content} id={item.id} key={item.id} />
+                        <TaskItem status={item.status} boardId={id} isComplete={item.status === 2} content={item.content} id={item.id} key={item.id} />
                     ))
                 }
             </div>

@@ -1,24 +1,25 @@
 import { TasksOptions } from "../types";
 
-const Tasks: Array<TasksOptions> = [
+const Boards: Array<TasksOptions> = [
     {
-        id: "Board-Todo",
+        id: "Todo",
         title:"Todo",
+        status: 0,
         items: [
             {
                 id: "task-1",
                 content: "hello world task-1",
-                isComplete: false
+                status: 0
             },
             {
                 id: "task-2",
                 content: "hello world task-2",
-                isComplete: false
+                status: 0
             },
             {
                 id: "task-3",
                 content: "hello world task-3",
-                isComplete: false
+                status: 0
             }
         ],
         showActionBtn:true,
@@ -28,13 +29,14 @@ const Tasks: Array<TasksOptions> = [
         countColor:"#D4AFB4"
     },
     {
-        id: "Board-Doing",
+        id: "Doing",
         title:"Doing",
+        status: 1,
         items: [
             {
                 id: "task-4",
                 content: "hello world task-4",
-                isComplete: false
+                status: 1
             }
         ],
         showActionBtn:true,
@@ -44,18 +46,19 @@ const Tasks: Array<TasksOptions> = [
         countColor:"#DECCA4"
     },
     {
-        id: "Board-Done",
+        id: "Done",
         title:"Done",
+        status: 2,
         items: [
             {
                 id: "task-5",
                 content: "hello world task-5",
-                isComplete: true
+                status: 2
             },
             {
                 id: "task-6",
                 content: "hello world task-6",
-                isComplete: true
+                status: 2
             }
         ],
         showActionBtn:false,
@@ -65,4 +68,4 @@ const Tasks: Array<TasksOptions> = [
     },
 ]
 
-export default Tasks
+export default Boards
