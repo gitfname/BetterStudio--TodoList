@@ -3,6 +3,7 @@ import { TaskOptions } from "../../types";
 import { cva, type VariantProps } from "class-variance-authority"
 import { twMerge } from "tailwind-merge"
 import { HTMLAttributes } from "react"
+import { TaskItem } from "../TaskItem";
 
 
 const variants = cva(
@@ -46,11 +47,13 @@ function Board({ title, id, items, className, baseColor, titleColor, actionBtnCo
                 </p>
             </div>
 
-            {
-                items?.map(item => (
-                    <p key={item.id}>{item.content}</p>
-                ))
-            }
+            <div className="space-y-1.5">
+                {
+                    items?.map(item => (
+                        <TaskItem isComplete={item.isComplete} content={item.content} id={item.id} key={item.id} />
+                    ))
+                }
+            </div>
 
             {
                 showActionBtn

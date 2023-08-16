@@ -7,6 +7,9 @@ export default {
   theme: {
     extend: {},
   },
-  plugins: [],
+  darkMode: 'clas',
+  plugins: [
+    require("daisyui")
+  ],
 }
 
