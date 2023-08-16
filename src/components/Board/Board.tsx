@@ -2,8 +2,9 @@
 import { TaskOptions } from "../../types";
 import { cva, type VariantProps } from "class-variance-authority"
 import { twMerge } from "tailwind-merge"
-import { HTMLAttributes } from "react"
+import { HTMLAttributes, useContext } from "react"
 import { TaskItem } from "../TaskItem";
+import { SetBoardsContext } from "../../data/context";
 
 
 const variants = cva(
@@ -22,6 +23,19 @@ interface Props extends HTMLAttributes<HTMLDivElement>, VariantProps<typeof vari
 }
 
 function Board({ title, id, items, className, baseColor, titleColor, actionBtnColor, countColor, showActionBtn = true, ...props }: Props) {
+
+    const { newTask } = useContext(SetBoardsContext)
+
+    const handleOnNewTask = () => {
+        const task: TaskOptions = newTask(id);
+        setTimeout(() => {
+            document.getElementById("task-item-" + task.id)?.click()
+            setTimeout(() => {
+                document.getElementById("task-item-" + task.id)?.focus()
+            }, 10);
+        }, 40);
+    }
+
     return (
         <div style={{ backgroundColor: baseColor }} className={twMerge(variants({ className }))}
             {...props}
@@ -59,6 +73,7 @@ function Board({ title, id, items, className, baseColor, titleColor, actionBtnCo
                 showActionBtn
                     ?
                     <button
+                        onClick={handleOnNewTask}
                         style={{
                             color: actionBtnColor
                         }}

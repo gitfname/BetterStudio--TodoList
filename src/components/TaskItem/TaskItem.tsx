@@ -68,6 +68,7 @@ function TaskItem({ id, content, isComplete, boardId, status }: Props) {
             />
 
             <input
+                id={"task-item-" + id}
                 type="text"
                 onClick={handleEditTaskContent}
                 readOnly={isReadOnly}
