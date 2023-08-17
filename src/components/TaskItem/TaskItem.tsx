@@ -1,6 +1,7 @@
 
-import { ChangeEvent, ChangeEventHandler, useCallback, useContext, useEffect, useState } from "react";
+import { ChangeEvent, ChangeEventHandler, useCallback, useContext, useEffect, useRef, useState } from "react";
 import { SetBoardsContext } from "../../data/context";
+import { adjustElementHeight } from "../../data/utils";
 
 interface Props {
     id: string;
@@ -15,12 +16,20 @@ function TaskItem({ id, content, isComplete, boardId, status }: Props) {
     const [isReadOnly, setIsReadOnly] = useState(true)
     const [isTaskCompleted, setIsTaskCompleted] = useState(isComplete)
     const [taskConten, setTaskContent] = useState(content)
+    const textAreaRef = useRef<HTMLTextAreaElement>(null)
+
+    useEffect(
+        () => {
+            if (textAreaRef && textAreaRef.current) adjustElementHeight(textAreaRef.current)
+        },
+        []
+    )
 
     const handleEditTaskContent = () => {
         setIsReadOnly(false)
     }
 
-    const handleOnContentChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const handleOnContentChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         setTaskContent(e.target.value)
         editTask(
             {
@@ -32,6 +41,7 @@ function TaskItem({ id, content, isComplete, boardId, status }: Props) {
             id,
             false
         )
+        if (textAreaRef && textAreaRef.current) adjustElementHeight(textAreaRef.current)
     }
 
     const handleOnTaskStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -63,7 +73,7 @@ function TaskItem({ id, content, isComplete, boardId, status }: Props) {
 
     return (
         <div className={`flex items-center gap-x-2 justify-between group bg-white/80 rounded-md p-[12px_10px_12px_10px]
-        border border-[#F3E1DF] outline outline-transparent ${!isReadOnly ? "!outline-blue-500/40" : ""}`}>
+        border border-[#F3E1DF] outline outline-transparent h-max ${!isReadOnly ? "!outline-blue-500/40" : ""}`}>
 
             <input
                 type="checkbox"
@@ -72,16 +82,17 @@ function TaskItem({ id, content, isComplete, boardId, status }: Props) {
                 onChange={handleOnTaskStatusChange}
             />
 
-            <input
+            <textarea
+                ref={textAreaRef}
+                rows={1}
                 id={"task-item-" + id}
-                type="text"
                 onClick={handleEditTaskContent}
                 readOnly={isReadOnly}
                 onBlur={() => setIsReadOnly(true)}
-                className="text-sm text-[#3A3A3A] font-normal flex-1 border-none outline-none"
+                className="text-sm text-[#3A3A3A] resize-none h-max font-normal flex-1 border-none outline-none break-words"
                 value={taskConten}
                 onChange={handleOnContentChange}
-            />
+            ></textarea>
 
             <button
                 onClick={handleOnDeleteTask}
@@ -93,7 +104,7 @@ function TaskItem({ id, content, isComplete, boardId, status }: Props) {
                 </svg>
             </button>
 
-        </div>
+        </div >
     )
 }
 

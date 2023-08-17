@@ -1,6 +1,8 @@
 
 import { editTask } from "./editTask";
+import { adjustElementHeight } from "./adjustElementHeight";
 
 export {
-    editTask
+    editTask,
+    adjustElementHeight
 }

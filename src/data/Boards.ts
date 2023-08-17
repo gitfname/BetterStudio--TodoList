@@ -8,17 +8,17 @@ const Boards: Array<TasksOptions> = [
         items: [
             {
                 id: "task-1",
-                content: "hello world task-1",
+                content: "Start with meditation, exercise & breakfast for a productive day",
                 status: 0
             },
             {
                 id: "task-2",
-                content: "hello world task-2",
+                content: "Read to learn something new every day",
                 status: 0
             },
             {
                 id: "task-3",
-                content: "hello world task-3",
+                content: "Learn something fresh and relevant",
                 status: 0
             }
         ],
@@ -35,7 +35,12 @@ const Boards: Array<TasksOptions> = [
         items: [
             {
                 id: "task-4",
-                content: "hello world task-4",
+                content: "Engage & question in meetings",
+                status: 1
+            },
+            {
+                id: "task-11",
+                content: "Use time-blocking for effective days",
                 status: 1
             }
         ],
@@ -52,12 +57,12 @@ const Boards: Array<TasksOptions> = [
         items: [
             {
                 id: "task-5",
-                content: "hello world task-5",
+                content: "Finish online cource - check!",
                 status: 2
             },
             {
                 id: "task-6",
-                content: "hello world task-6",
+                content: "congratulate yoursel foor incorporating healthier habits into your lifestyle, like regualr exercise or mindful eating",
                 status: 2
             }
         ],
