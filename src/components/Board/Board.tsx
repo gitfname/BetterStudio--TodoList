@@ -5,6 +5,7 @@ import { twMerge } from "tailwind-merge"
 import { HTMLAttributes, useContext } from "react"
 import { TaskItem } from "../TaskItem";
 import { SetBoardsContext } from "../../data/context";
+import { Droppable, Draggable } from "react-beautiful-dnd";
 
 
 const variants = cva(
@@ -37,62 +38,85 @@ function Board({ title, id, items, className, baseColor, titleColor, actionBtnCo
     }
 
     return (
-        <div style={{ backgroundColor: baseColor }} className={twMerge(variants({ className }))}
-            {...props}
-        >
-
-            <div className="flex items-center justify-between">
-                <p
-                    className="text-base font-medium"
-                    style={{
-                        color: titleColor
-                    }}
-                >
-                    {title}
-                </p>
-
-                <p
-                    style={{
-                        color: countColor
-                    }}
-                    className="text-sm"
-                >
-                    {items?.length} Tasks
-                </p>
-            </div>
-
-            <div className="space-y-2">
-                {
-                    items?.map(item => (
-                        <TaskItem status={item.status} boardId={id} isComplete={item.status === 2} content={item.content} id={item.id} key={item.id} />
-                    ))
-                }
-            </div>
-
+        <Droppable droppableId={id} >
             {
-                showActionBtn
-                    ?
-                    <button
-                        onClick={handleOnNewTask}
-                        style={{
-                            color: actionBtnColor
-                        }}
-                        className="appearance-none text-sm w-max flex items-center gap-x-2 leading-none
-                py-2 px-3 hover:bg-transparent/[0.03] rounded-lg transition-all duration-300 active:scale-95"
+                (provided) => (
+                    <div
+                        {...provided.droppableProps}
+                        ref={provided.innerRef}
                     >
-                        <svg style={{ fill: actionBtnColor }} className="w-2.5 h-2.5 " viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="5.14285" width="1.71429" height="12" rx="0.857143" />
-                            <rect y="6.85714" width="1.71429" height="12" rx="0.857143" transform="rotate(-90 0 6.85714)" />
-                        </svg>
+                        <div style={{ backgroundColor: baseColor }} className={twMerge(variants({ className }))}
+                            {...props}
+                        >
 
-                        New
-                    </button>
-                    :
-                    null
+                            <div className="flex items-center justify-between">
+                                <p
+                                    className="text-base font-medium"
+                                    style={{
+                                        color: titleColor
+                                    }}
+                                >
+                                    {title}
+                                </p>
+
+                                <p
+                                    style={{
+                                        color: countColor
+                                    }}
+                                    className="text-sm"
+                                >
+                                    {items?.length} Tasks
+                                </p>
+                            </div>
+
+                            <div className="space-y-2">
+                                {
+                                    items?.map((item, index) => (
+                                        <Draggable index={index} draggableId={item.id} key={item.id} >
+                                            {
+                                                (provided) => (
+                                                    <div
+                                                        ref={provided.innerRef}
+                                                        {...provided.dragHandleProps}
+                                                        {...provided.draggableProps}
+                                                    >
+                                                        <TaskItem status={item.status} boardId={id} isComplete={item.status === 2} content={item.content} id={item.id} key={item.id} />
+                                                    </div>
+                                                )
+                                            }
+                                        </Draggable>
+                                    ))
+                                }
+                            </div>
+
+                            {
+                                showActionBtn
+                                    ?
+                                    <button
+                                        onClick={handleOnNewTask}
+                                        style={{
+                                            color: actionBtnColor
+                                        }}
+                                        className="appearance-none text-sm w-max flex items-center gap-x-2 leading-none
+                            py-2 px-3 hover:bg-transparent/[0.03] rounded-lg transition-all duration-300 active:scale-95"
+                                    >
+                                        <svg style={{ fill: actionBtnColor }} className="w-2.5 h-2.5 " viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                                            <rect x="5.14285" width="1.71429" height="12" rx="0.857143" />
+                                            <rect y="6.85714" width="1.71429" height="12" rx="0.857143" transform="rotate(-90 0 6.85714)" />
+                                        </svg>
+
+                                        New
+                                    </button>
+                                    :
+                                    null
+                            }
+                        </div>
+                        {provided.placeholder}
+
+                    </div>
+                )
             }
-
-
-        </div>
+        </Droppable>
     )
 }
 

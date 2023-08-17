@@ -22,10 +22,30 @@ function TaskItem({ id, content, isComplete, boardId, status }: Props) {
 
     const handleOnContentChange = (e: ChangeEvent<HTMLInputElement>) => {
         setTaskContent(e.target.value)
+        editTask(
+            {
+                id,
+                content: e.target.value,
+                status: isTaskCompleted ? 2 : status === 2 ? 1 : status
+            },
+            boardId,
+            id,
+            false
+        )
     }
 
     const handleOnTaskStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
         setIsTaskCompleted(e.target.checked)
+        editTask(
+            {
+                id,
+                content: content || taskConten,
+                status: e.target.checked ? 2 : status === 2 ? 1 : status
+            },
+            boardId,
+            id,
+            false
+        )
     }
 
     const handleOnDeleteTask = () => {
@@ -40,21 +60,6 @@ function TaskItem({ id, content, isComplete, boardId, status }: Props) {
             true
         )
     }
-
-    useEffect(
-        () => {
-            editTask(
-                {
-                    id,
-                    content: taskConten,
-                    status: isTaskCompleted ? 2 : status === 2 ? 1 : status
-                },
-                boardId,
-                id
-            )
-        },
-        [isTaskCompleted, taskConten]
-    )
 
     return (
         <div className={`flex items-center gap-x-2 justify-between group bg-white/80 rounded-md p-[12px_10px_12px_10px]
