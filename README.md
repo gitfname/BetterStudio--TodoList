@@ -3,7 +3,7 @@
 
 # Project Name
 
-This project is built with Vite, TypeScript, and Tailwind CSS.
+BetterStudi--TodoList
 
 ## Description
 
@@ -47,7 +47,7 @@ To start the development server and run the application in development mode, fol
    $ npm run dev
    ```
 
-3. The development server will start running at `http://127.0.0.1:5173`. ( usualy it runs on port 5173. but in case of you get the <span style="color:'red';">port is busy</span> error. then read the read the **Changing Port Number** section below ) Open your web browser and navigate to this URL to access the application.
+3. The development server will start running at `http://127.0.0.1:5173`. ( usualy it runs on port 5173. but in case of you get the <span style="color:'red';">port is busy</span> error. then read the **Changing Port Number** section below ) Open your web browser and navigate to this URL to access the application.
 
 ## Build
 
