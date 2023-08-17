@@ -25,14 +25,34 @@ interface Props extends HTMLAttributes<HTMLDivElement>, VariantProps<typeof vari
 
 function Board({ title, id, items, className, baseColor, titleColor, actionBtnColor, countColor, showActionBtn = true, ...props }: Props) {
 
-    const { newTask } = useContext(SetBoardsContext)
+    const { newTask, deleteTask } = useContext(SetBoardsContext)
 
     const handleOnNewTask = () => {
-        const task: TaskOptions = newTask(id);
+        const task: TaskOptions = newTask(id, {
+            content: "",
+            id: "",
+            status: null
+        });
         setTimeout(() => {
-            document.getElementById("task-item-" + task.id)?.click()
+            const newTaskElement = document.getElementById("task-item-" + task.id) as HTMLTextAreaElement;
+            newTaskElement?.addEventListener("paste", (e) => {
+                e.preventDefault()
+                const data = e.clipboardData?.getData("text").split("\n") || [];
+                deleteTask(task.id, id)
+                if (data?.length > 1) {
+                    for (let index = 0; index < data.length; index++) {
+                        if(data[index].trim() === "") continue
+                        newTask(id, {
+                            content: data[index].trim(),
+                            id: "",
+                            status: null
+                        })
+                    }
+                }
+            })
+            newTaskElement?.click()
             setTimeout(() => {
-                document.getElementById("task-item-" + task.id)?.focus()
+                newTaskElement?.focus()
             }, 10);
         }, 40);
     }
@@ -80,7 +100,7 @@ function Board({ title, id, items, className, baseColor, titleColor, actionBtnCo
                                                         {...provided.dragHandleProps}
                                                         {...provided.draggableProps}
                                                     >
-                                                        <TaskItem status={item.status} boardId={id} isComplete={item.status === 2} content={item.content} id={item.id} key={item.id} />
+                                                        <TaskItem status={item.status || 0} boardId={id} isComplete={item.status === 2} content={item.content} id={item.id} key={item.id} />
                                                     </div>
                                                 )
                                             }

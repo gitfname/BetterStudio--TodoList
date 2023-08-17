@@ -1,5 +1,5 @@
 
-import { ReactNode, useEffect, useState } from "react"
+import { ReactNode, useState } from "react"
 import Boards from "../../Boards";
 import { BoardsContext } from "./BoardsContext";
 
