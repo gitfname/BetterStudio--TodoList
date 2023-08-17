@@ -65,7 +65,7 @@ To build the application for production, follow these steps:
 
 ## Changing Port Number
 
-By default, the development server runs on port 3000. However, if the targeted port is already in use or you want to use a different port, you can change it by following these steps:
+By default, the development server runs on port 5173. However, if the targeted port is already in use or you want to use a different port, you can change it by following these steps:
 
 1. Open the project directory in a text editor.
 
