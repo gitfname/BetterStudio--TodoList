@@ -1,27 +1,68 @@
-# React + TypeScript + Vite
+# React + TypeScript + TailwindCSS + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+# Project Name
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This project is built with Vite, TypeScript, and Tailwind CSS.
 
-## Expanding the ESLint configuration
+## Description
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+This project is a simple TodoList application with the capability of d&d ( drag and drop )
 
-- Configure the top-level `parserOptions` property like this:
+## Prerequisites
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+Make sure you have the following prerequisites installed on your machine:
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- Node.js (Recommended version: 14+)
+
+## Installation
+
+1. Clone this repository.
+   
+   ```bash
+   $ git clone https://github.com/gitfname/BetterStudio--TodoList.git
+   ```
+
+2. Navigate to the project directory.
+
+   ```bash
+   $ cd BetterStudio--TodoList
+   ```
+
+3. Install the dependencies.
+
+   ```bash
+   $ npm install
+   ```
+
+## Development Server
+
+To start the development server and run the application in development mode, follow these steps:
+
+1. Open a terminal in the project directory.
+
+2. Run the following command:
+
+   ```bash
+   $ npm run dev
+   ```
+
+3. The development server will start running at `http://127.0.0.1:5173`. ( usualy it runs on port 5173. but in case of you get the <span style="color:'red';">port is busy</span> error. then read the read the **Changing Port Number** section below ) Open your web browser and navigate to this URL to access the application.
+
+## Build
+
+To build the application for production, follow these steps:
+
+1. Open a terminal in the project directory.
+
+2. Run the following command:
+
+   ```bash
+   $ npm run build
+   ```
+
+3. The build process will generate a production-ready version of the application in the `dist` directory.
+
+## Conclusion
+
+After following these instructions, you should be able to run the development server and build the application for production using Vite, TypeScript, and Tailwind CSS. Happy_Clean_Coding!
