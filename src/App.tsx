@@ -46,6 +46,20 @@ function App() {
 
   return (
     <div className="w-full min-h-screen py-6">
+
+      <p
+        className="text-3xl text-[#3A3A3A] font-[700] mb-3 px-12"
+      >
+        ✔️ Task List
+      </p>
+
+      <p
+        className="mb-12 text-sm text-[#3A3A3A] font-medium max-w-[80ch] px-12"
+      >
+        Break your life to simple tasks to get things done!
+        Does not matter how many tasks you done, It’s important to break to small tasks and be on progress.
+      </p>
+
       <div className="w-full grid grid-cols-1 lg:grid-cols-3 px-12 gap-4 h-full">
         <DragDropContext
           onDragEnd={handleOnDragEnd}
